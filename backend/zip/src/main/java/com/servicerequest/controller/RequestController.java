@@ -10,18 +10,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-import static tools.jackson.databind.type.LogicalType.Map;
+
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/requests")
 @CrossOrigin (origins = "*")
 public class RequestController {
 
     private final RequestService requestService;
 
     public RequestController(RequestService requestService){
-        this.requestService = requestservice;
+        this.requestService = requestService;
     }
 
     @PostMapping
@@ -36,7 +37,7 @@ public class RequestController {
 
     @GetMapping
     public ResponseEntity<List<ServiceRequest>> getAllRequests(){
-        return ResponseEntity.ok(requestService.getallRequests());
+        return ResponseEntity.ok(requestService.getAllRequests());
     }
 
     @GetMapping("/{id}")
@@ -45,7 +46,7 @@ public class RequestController {
             ServiceRequest request = requestService.getRequestById(requestId);
             return ResponseEntity.ok(request);
         } catch (RequestNotFoundException ex) {
-            return ResponseEntity.status(HttpSatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
         }
     }
 
