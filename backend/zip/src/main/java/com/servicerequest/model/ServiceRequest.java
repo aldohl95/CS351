@@ -26,9 +26,7 @@ public class ServiceRequest {
     private List<HistoryEntry> history = new ArrayList<>();
 
 
-    public ServiceRequest(String requestId, String title, String description, String createdBy, LocalDateTime createdAt,
-                          LocalDateTime updatedAt, Status status, Priority priority, String category,
-                          List<Comment> comments, List<HistoryEntry> history) {
+    public ServiceRequest(String title, String description, String createdBy, Priority priority, String category) {
         this.requestId = requestId;
         this.title = title;
         this.description = description;
