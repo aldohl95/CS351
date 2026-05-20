@@ -64,7 +64,7 @@ public class RequestService {
         request.setUpdatedAt(LocalDateTime.now());
 
         request.getHistory().add(new HistoryEntry(
-                requestId, changedBy, "Status", oldStatus, newStatus.name()
+                requestId, changedBy, "status", oldStatus, newStatus.name()
         ));
         return repository.save(request);
     }
@@ -84,26 +84,26 @@ public class RequestService {
         return repository.save(request);
     }
 
-    public Status parseStatus(String raw){
-        if (isBlank(raw)){
-            throw new ValidationException("Status must not be balnk");
+    private Status parseStatus(String raw){
+        if (raw == null || raw.trim().isEmpty()){
+            throw new ValidationException("Status must not be blank");
         }
         try{
             return Status.valueOf(raw.trim().toUpperCase());
         }catch (IllegalArgumentException e){
-            throw new ValidationException("Invalid Status ' " + raw + "'.Accepted values: OPEN, IN_PROGRESS, RESOLVED, "
-                    + "CLosed.");
+            throw new ValidationException("Invalid status ' " + raw.trim() + "'.Accepted values: OPEN, IN_PROGRESS, RESOLVED, "
+                    + "CLOSED.");
         }
     }
 
     public Priority parsePriority(String raw){
-        if (isBlank(raw)){
+        if (raw == null || raw.trim().isEmpty()){
             throw new ValidationException("Priority must not be blank");
         }
         try{
             return Priority.valueOf(raw.trim().toUpperCase());
         }catch (IllegalArgumentException e){
-            throw new ValidationException("Invalid Priority ' " + raw + "'. Accepted values: LOW, MEDIUM, HIGH.");
+            throw new ValidationException("Invalid priority '" + raw.trim() + "'. Accepted values: LOW, MEDIUM, HIGH.");
         }
     }
 
