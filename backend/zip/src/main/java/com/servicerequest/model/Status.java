@@ -3,5 +3,6 @@ package com.servicerequest.model;
 public enum Status {
     OPEN,
     CLOSED,
-    IN_PROGRESS
+    IN_PROGRESS,
+    RESOLVED
 }
