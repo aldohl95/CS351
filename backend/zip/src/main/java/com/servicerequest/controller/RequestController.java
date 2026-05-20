@@ -5,6 +5,7 @@ import com.servicerequest.exception.ValidationException;
 import com.servicerequest.model.ServiceRequest;
 import com.servicerequest.service.CreateRequestDTO;
 import com.servicerequest.service.RequestService;
+import com.servicerequest.service.UpdateRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +47,32 @@ public class RequestController {
             ServiceRequest request = requestService.getRequestById(requestId);
             return ResponseEntity.ok(request);
         } catch (RequestNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updateRequest(@PathVariable("id") String requestId, @RequestBody UpdateRequestDTO dto){
+        try{
+            ServiceRequest result = null;
+            String changedBy = dto.getChangedBy() != null ? dto.getChangedBy() : "TBD";
+
+            if (dto.getStatus() != null) {
+                result = requestService.updateStatus(requestId, dto.getStatus(), changedBy);
+            }
+
+            if(dto.getPriority() != null) {
+                result = requestService.updatePriority(requestId, dto.getPriority(), changedBy);
+            }
+
+            if(result == null) {
+                return ResponseEntity.badRequest().body(Map.of("error", "No Status or Priority provided"));
+            }
+
+            return ResponseEntity.ok(result);
+        }catch(ValidationException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", ex.getMessage()));
+        }catch(RequestNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
         }
     }
