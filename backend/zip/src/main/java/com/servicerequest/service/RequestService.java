@@ -55,7 +55,8 @@ public class RequestService {
         return repository.findById(requestId).orElseThrow(()-> new RequestNotFoundException(requestId));
     }
 
-    public ServiceRequest updateSatus(String requestId, Status newStatus, String changedBy){
+    public ServiceRequest updateStatus(String requestId, String rawStatus, String changedBy){
+        Status newStatus = parseStatus(rawStatus);
         ServiceRequest request = getRequestById(requestId);
 
         String oldStatus = request.getStatus().name();
@@ -68,7 +69,8 @@ public class RequestService {
         return repository.save(request);
     }
 
-    public ServiceRequest updatePriority(String requestId, Priority newPriority, String changedBy){
+    public ServiceRequest updatePriority(String requestId, String rawPriority, String changedBy){
+        Priority newPriority = parsePriority(rawPriority);
         ServiceRequest request = getRequestById(requestId);
 
         String oldPriority = request.getPriority() != null ? request.getPriority().name() : "NONE";
@@ -80,6 +82,29 @@ public class RequestService {
         ));
 
         return repository.save(request);
+    }
+
+    public Status parseStatus(String raw){
+        if (isBlank(raw)){
+            throw new ValidationException("Status must not be balnk");
+        }
+        try{
+            return Status.valueOf(raw.trim().toUpperCase());
+        }catch (IllegalArgumentException e){
+            throw new ValidationException("Invalid Status ' " + raw + "'.Accepted values: OPEN, IN_PROGRESS, RESOLVED, "
+                    + "CLosed.");
+        }
+    }
+
+    public Priority parsePriority(String raw){
+        if (isBlank(raw)){
+            throw new ValidationException("Priority must not be blank");
+        }
+        try{
+            return Priority.valueOf(raw.trim().toUpperCase());
+        }catch (IllegalArgumentException e){
+            throw new ValidationException("Invalid Priority ' " + raw + "'. Accepted values: LOW, MEDIUM, HIGH.");
+        }
     }
 
     private void ValidateCreateDTO(CreateRequestDTO dto){
