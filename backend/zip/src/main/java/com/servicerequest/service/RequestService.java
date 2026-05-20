@@ -25,6 +25,7 @@ public class RequestService {
 
 
     public ServiceRequest createRequest(CreateRequestDTO dto){
+        ValidateCreateDTO(dto);
 
         ServiceRequest request = new ServiceRequest(
                 dto.getTitle().trim(),
@@ -86,13 +87,13 @@ public class RequestService {
             throw new ValidationException("Request body cannot be null");
         }
         if(isBlank(dto.getTitle())){
-            throw new ValidationException("Request title cannot be blank");
+            throw new ValidationException("Title is required");
         }
         if(isBlank(dto.getDescription())){
-            throw new ValidationException("Request description cannot be blank");
+            throw new ValidationException("Description is required");
         }
         if(isBlank(dto.getCreatedBy())){
-            throw new ValidationException("Request created by cannot be blank");
+            throw new ValidationException("Requester identifier is required");
         }
     }
 

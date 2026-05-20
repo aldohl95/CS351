@@ -27,13 +27,13 @@ public class ServiceRequest {
 
 
     public ServiceRequest(String title, String description, String createdBy, Priority priority, String category) {
-        this.requestId = requestId;
+        this.requestId = java.util.UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.createdBy = createdBy;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.status = status;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+        this.status = Status.OPEN;
         this.priority = priority;
         this.category = category;
         this.comments = comments;
