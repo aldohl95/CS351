@@ -41,12 +41,12 @@ public class RequestController {
                                          @RequestParam(required = false)String keyword){
         boolean hasFilters = status != null || priority != null || requester != null || keyword != null;
 
-        if(hasFilters){
+        if(!hasFilters){
             return ResponseEntity.ok(requestService.getAllRequests());
         }
 
         SearchCriteria criteria = new SearchCriteria(status, priority, requester, keyword);
-        SearchResult result = requestService.searchResults(criteria);
+        SearchResult result = requestService.searchRequests(criteria);
 
         return ResponseEntity.ok(result);
     }

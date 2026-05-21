@@ -1,0 +1,6 @@
+storage:
+  requests-file: target/test-data/requests-test.json
+
+server:
+  port: 0
+

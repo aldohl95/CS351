@@ -15,7 +15,7 @@ public class SearchResult {
         this.requests = requests;
         this.totalCount = requests.size();
         this.appliedCriteria = appliedCriteria;
-        this.message = requests.isEmpty() ? "No Requests match" : totalCount + " Requests found";
+        this.message = requests.isEmpty() ? "no requests matched" : totalCount + " Requests found";
     }
 
     public List<ServiceRequest> getRequests() {

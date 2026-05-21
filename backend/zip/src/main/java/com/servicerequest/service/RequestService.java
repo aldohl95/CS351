@@ -84,7 +84,7 @@ public class RequestService {
         return repository.save(request);
     }
 
-    public SearchResult searchResults(SearchCriteria criteria){
+    public SearchResult searchRequests(SearchCriteria criteria){
         List<ServiceRequest> results = repository.search(criteria);
         return new SearchResult(results, criteria);
     }
