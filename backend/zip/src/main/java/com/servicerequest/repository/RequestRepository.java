@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.servicerequest.model.Priority;
 import com.servicerequest.model.ServiceRequest;
 import com.servicerequest.model.Status;
+import com.servicerequest.service.SearchCriteria;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class RequestRepository {
@@ -92,6 +94,47 @@ public class RequestRepository {
         return requests.stream().filter(r -> containsIgnoreCase(r.getTitle(), term) ||
                 containsIgnoreCase(r.getDescription(),term)
                 ).collect(Collectors.toList());
+    }
+
+    public List<ServiceRequest> search(SearchCriteria criteria){
+        if(criteria == null || criteria.isEmpty()){
+            return findAll();
+        }
+
+        Stream<ServiceRequest> stream = requests.stream();
+
+        if(!isBlank(criteria.getStatus())){
+            try{
+                Status status = Status.valueOf(criteria.getStatus().trim().toUpperCase());
+                stream = stream.filter(r -> r.getStatus() == status);
+            }catch(IllegalArgumentException ignored){
+                return List.of();
+            }
+        }
+
+        if(!isBlank(criteria.getPriority())){
+            try{
+                Priority priority = Priority.valueOf(criteria.getPriority().trim().toUpperCase());
+                stream = stream.filter(r -> r.getPriority() == priority);
+            }catch(IllegalArgumentException ignored){
+                return List.of();
+            }
+        }
+
+        if(!isBlank(criteria.getRequester())){
+            String term = criteria.getRequester().trim().toLowerCase();
+            stream = stream.filter(r -> r.getCreatedBy() != null && r.getCreatedBy().toLowerCase()
+                    .contains(term));
+        }
+
+        if(!isBlank(criteria.getKeyword())){
+            String term = criteria.getKeyword().trim().toLowerCase();
+            stream = stream.filter(r -> containsIgnoreCase(r.getTitle(), term)
+                    || containsIgnoreCase(r.getDescription(), term));
+        }
+
+        return stream.collect(Collectors.toList());
+
     }
 
 
