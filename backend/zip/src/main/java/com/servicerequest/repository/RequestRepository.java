@@ -75,6 +75,34 @@ public class RequestRepository {
         return requests.stream().filter(r -> r.getPriority() == priority).collect(Collectors.toList());
     }
 
+    public List<ServiceRequest> findByRequester(String requester){
+        if(requester == null || requester.trim().isEmpty()){
+            return List.of();
+        }
+        String term = requester.trim().toLowerCase();
+        return requests.stream().filter(r -> r.getCreatedBy() != null
+                && r.getCreatedBy().toLowerCase().contains(term)).collect(Collectors.toList());
+    }
+
+    public List<ServiceRequest> findByKeyword(String keyword){
+        if(keyword == null || keyword.trim().isEmpty()){
+            return List.of();
+        }
+        String term = keyword.trim().toLowerCase();
+        return requests.stream().filter(r -> containsIgnoreCase(r.getTitle(), term) ||
+                containsIgnoreCase(r.getDescription(),term)
+                ).collect(Collectors.toList());
+    }
+
+
+    private boolean isBlank(String value){
+        return value == null || value.trim().isEmpty();
+    }
+
+    private boolean containsIgnoreCase(String field, String term){
+        return field != null && field.toLowerCase().contains(term);
+    }
+
     private void flush(){
         try {
             File file = new File(filePath);
