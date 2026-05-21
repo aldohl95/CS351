@@ -84,6 +84,11 @@ public class RequestService {
         return repository.save(request);
     }
 
+    public SearchResult searchResults(SearchCriteria criteria){
+        List<ServiceRequest> results = repository.search(criteria);
+        return new SearchResult(results, criteria);
+    }
+
     private Status parseStatus(String raw){
         if (raw == null || raw.trim().isEmpty()){
             throw new ValidationException("Status must not be blank");
