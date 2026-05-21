@@ -3,9 +3,7 @@ package com.servicerequest.controller;
 import com.servicerequest.exception.RequestNotFoundException;
 import com.servicerequest.exception.ValidationException;
 import com.servicerequest.model.ServiceRequest;
-import com.servicerequest.service.CreateRequestDTO;
-import com.servicerequest.service.RequestService;
-import com.servicerequest.service.UpdateRequestDTO;
+import com.servicerequest.service.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,8 +35,20 @@ public class RequestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ServiceRequest>> getAllRequests(){
-        return ResponseEntity.ok(requestService.getAllRequests());
+    public ResponseEntity<?> getRequests(@RequestParam(required = false) String status,
+                                         @RequestParam(required = false) String priority,
+                                         @RequestParam(required = false)String requester,
+                                         @RequestParam(required = false)String keyword){
+        boolean hasFilters = status != null || priority != null || requester != null || keyword != null;
+
+        if(hasFilters){
+            return ResponseEntity.ok(requestService.getAllRequests());
+        }
+
+        SearchCriteria criteria = new SearchCriteria(status, priority, requester, keyword);
+        SearchResult result = requestService.searchResults(criteria);
+
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{id}")
