@@ -25,6 +25,8 @@ public class ServiceRequest {
     private List<Comment> comments = new ArrayList<>();
     private List<HistoryEntry> history = new ArrayList<>();
 
+    public ServiceRequest() {}
+
 
     public ServiceRequest(String title, String description, String createdBy, Priority priority, String category) {
         this.requestId = java.util.UUID.randomUUID().toString();
