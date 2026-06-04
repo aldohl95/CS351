@@ -34,6 +34,20 @@ public class RequestController {
         }
     }
 
+    @PostMapping("/{id}/comments")
+    public ResponseEntity<?> addComment(@PathVariable("id") String requestId, @RequestBody AddCommentDTO dto){
+        try{
+            ServiceRequest updated = requestService.addComment(
+                    requestId, dto.getConetent(), dto.getAuthor()
+            );
+            return ResponseEntity.status(HttpStatus.CREATED).body(updated);
+        }catch(ValidationException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error",ex.getMessage()));
+        }catch(RequestNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error",ex.getMessage()));
+        }
+    }
+
     @GetMapping
     public ResponseEntity<?> getRequests(@RequestParam(required = false) String status,
                                          @RequestParam(required = false) String priority,
