@@ -2,10 +2,7 @@ package com.servicerequest.service;
 
 import com.servicerequest.exception.RequestNotFoundException;
 import com.servicerequest.exception.ValidationException;
-import com.servicerequest.model.HistoryEntry;
-import com.servicerequest.model.Priority;
-import com.servicerequest.model.ServiceRequest;
-import com.servicerequest.model.Status;
+import com.servicerequest.model.*;
 import com.servicerequest.repository.RequestRepository;
 import org.springframework.stereotype.Service;
 
@@ -87,6 +84,27 @@ public class RequestService {
     public SearchResult searchRequests(SearchCriteria criteria){
         List<ServiceRequest> results = repository.search(criteria);
         return new SearchResult(results, criteria);
+    }
+
+    public ServiceRequest addComment(String requestId, String content, String author){
+        if (isBlank(content)){
+            throw new ValidationException("Comment content cannot be blank");
+        }
+        if(isBlank(author)){
+            throw new ValidationException("Author cannot be blank");
+        }
+
+        ServiceRequest request = getRequestById(requestId);
+
+        request.getComments().add(new Comment(requestId, content, author));
+
+        request.getHistory().add(new HistoryEntry(
+                requestId, author, "comment", null, content
+        ));
+
+        request.setUpdatedAt(LocalDateTime.now());
+        return repository.save(request);
+
     }
 
     private Status parseStatus(String raw){
