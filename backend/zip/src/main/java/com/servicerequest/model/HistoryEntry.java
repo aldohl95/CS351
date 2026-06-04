@@ -16,6 +16,8 @@ public class HistoryEntry {
     @JsonFormat(pattern = "yyyy-MM-DD'T'HH:mm:ss")
     private LocalDateTime timesStamp;
 
+    public HistoryEntry() {}
+
     public HistoryEntry(String requestId, String changedBy, String field, String oldValue, String newValue) {
         this.requestId = requestId;
         this.entryId = entryId;

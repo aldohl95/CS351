@@ -12,7 +12,7 @@ public class Comment {
     private String author;
     private String content;
 
-    @JsonFormat(pattern = "yyyy-MM-dd 'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     public Comment(){}
