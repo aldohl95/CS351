@@ -1,0 +1,70 @@
+/* src/index.css */
+:root {
+  --bg:        #0f1117;
+  --surface:   #181c27;
+  --border:    #252a38;
+  --border-lt: #2e3448;
+  --text:      #e2e8f0;
+  --text-muted:#7a8499;
+  --accent:    #4f8ef7;
+  --accent-dim:#1e3460;
+  --green:     #34d399;
+  --yellow:    #fbbf24;
+  --red:       #f87171;
+  --purple:    #a78bfa;
+
+  --radius:    6px;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 7px 14px;
+  transition: opacity .15s, background .15s;
+}
+button:hover { opacity: .85; }
+
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 13px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border-lt);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color .15s;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
