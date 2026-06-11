@@ -1,0 +1,153 @@
+[ {
+  "requestId" : "75849326-c032-4410-ab55-8980ab63930e",
+  "title" : "Testing Video",
+  "description" : "Using for video requirement",
+  "createdBy" : "Tevita Mathias",
+  "createdAt" : "2026-05-22T13:29:43",
+  "updatedAt" : "2026-05-22T13:29:59",
+  "status" : "IN_PROGRESS",
+  "priority" : "MEDIUM",
+  "category" : "Other",
+  "comments" : [ ],
+  "history" : [ {
+    "entryId" : null,
+    "requestId" : "75849326-c032-4410-ab55-8980ab63930e",
+    "changedBy" : "Tevita Mathias",
+    "field" : "status",
+    "oldValue" : null,
+    "newValue" : "OPEN",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "75849326-c032-4410-ab55-8980ab63930e",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "OPEN",
+    "newValue" : "IN_PROGRESS",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "75849326-c032-4410-ab55-8980ab63930e",
+    "changedBy" : "admin",
+    "field" : "priority",
+    "oldValue" : "HIGH",
+    "newValue" : "MEDIUM",
+    "timesStamp" : null
+  } ]
+}, {
+  "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+  "title" : "Power problem",
+  "description" : "computer not turning on",
+  "createdBy" : "mathias.tevita",
+  "createdAt" : "2026-05-22T12:39:22",
+  "updatedAt" : "2026-06-09T14:56:24",
+  "status" : "OPEN",
+  "priority" : "LOW",
+  "category" : "Hardware",
+  "comments" : [ {
+    "commentId" : "514dcf2b-ce43-4dc7-815e-a39dc5207f28",
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "author" : "this is easy to fix",
+    "content" : "admin",
+    "createdAt" : "2026-06-09T14:56:24"
+  } ],
+  "history" : [ {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "mathias.tevita",
+    "field" : "status",
+    "oldValue" : null,
+    "newValue" : "OPEN",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "OPEN",
+    "newValue" : "RESOLVED",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "RESOLVED",
+    "newValue" : "RESOLVED",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "admin",
+    "field" : "priority",
+    "oldValue" : "HIGH",
+    "newValue" : "LOW",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "RESOLVED",
+    "newValue" : "OPEN",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "eca68794-b8d0-4ec9-bad3-0901a148786b",
+    "changedBy" : "admin",
+    "field" : "comment",
+    "oldValue" : null,
+    "newValue" : "this is easy to fix",
+    "timesStamp" : null
+  } ]
+}, {
+  "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+  "title" : "user error",
+  "description" : "dfdjjdfjdf",
+  "createdBy" : "tjtjtj",
+  "createdAt" : "2026-05-22T12:40:46",
+  "updatedAt" : "2026-06-09T14:57:21",
+  "status" : "OPEN",
+  "priority" : "MEDIUM",
+  "category" : "General",
+  "comments" : [ {
+    "commentId" : "5f9d55c2-980c-4e64-b3db-834a1a8df0f5",
+    "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+    "author" : "changing status from closed to open",
+    "content" : "admin",
+    "createdAt" : "2026-06-09T14:57:12"
+  } ],
+  "history" : [ {
+    "entryId" : null,
+    "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+    "changedBy" : "tjtjtj",
+    "field" : "status",
+    "oldValue" : null,
+    "newValue" : "OPEN",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "OPEN",
+    "newValue" : "CLOSED",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+    "changedBy" : "admin",
+    "field" : "comment",
+    "oldValue" : null,
+    "newValue" : "changing status from closed to open",
+    "timesStamp" : null
+  }, {
+    "entryId" : null,
+    "requestId" : "14017c0d-098d-4292-9a10-0cb8bcf8e848",
+    "changedBy" : "admin",
+    "field" : "status",
+    "oldValue" : "CLOSED",
+    "newValue" : "OPEN",
+    "timesStamp" : null
+  } ]
+} ]

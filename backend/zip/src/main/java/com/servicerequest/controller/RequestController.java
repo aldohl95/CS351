@@ -38,7 +38,7 @@ public class RequestController {
     public ResponseEntity<?> addComment(@PathVariable("id") String requestId, @RequestBody AddCommentDTO dto){
         try{
             ServiceRequest updated = requestService.addComment(
-                    requestId, dto.getConetent(), dto.getAuthor()
+                    requestId, dto.getContent(), dto.getAuthor()
             );
             return ResponseEntity.status(HttpStatus.CREATED).body(updated);
         }catch(ValidationException ex) {
